@@ -1,1 +1,1 @@
-{"root":["./src/config.ts","./src/content.ts","./src/index.ts","./src/middleware.ts","./src/utils.ts","./src/database/content.ts","./src/database/link.ts","./src/database/userdb.ts"],"version":"5.7.2"}
+{"root":["./src/config.ts","./src/index.ts","./src/middleware.ts","./src/utils.ts","./src/database/content.ts","./src/database/link.ts","./src/database/notescontent.ts","./src/database/userdb.ts"],"version":"5.7.2"}

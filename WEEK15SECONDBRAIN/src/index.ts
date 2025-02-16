@@ -14,6 +14,7 @@ app.use(express.json())
 // @ts-ignore
 import cors from "cors"
 import ts from "typescript"
+import { NotesModel } from "./DATABASE/notescontent"
 
 app.use(cors())
 
@@ -111,8 +112,36 @@ app.get("/api/v1/brain/content",UserMiddelware, async (req,res)=>{
     })
 
 
+})
+
+
+
+app.post("/api/v1/brain/notes",UserMiddelware,async(req,res)=>{
+    const notes=req.body.notes
+     //@ts-ignore
+    const userId:req.userId
+    await NotesModel.create({
+        notes:notes,
+        
+        userId:userId
+    })
+    res.json({
+        message:"notes added"
+    })
 
 })
+
+app.get("/api/v1/brain/note",UserMiddelware,async(req,res)=>{
+    //@ts-ignore
+    const userId:req.userId
+    const response=await NotesModel.find({
+        userId:userId
+    }).populate("userId","username")
+    res.json({response})
+
+})
+
+
 
 app.post("/api/v1/brain/share",UserMiddelware,async(req,res)=>{
     const share=req.body.share;
@@ -185,3 +214,5 @@ app.get("/api/v1/brain/:shareLink",async (req,res)=>{
 
 
 app.listen(3000);
+
+

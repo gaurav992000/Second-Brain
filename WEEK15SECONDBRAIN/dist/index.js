@@ -26,6 +26,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 // @ts-ignore
 const cors_1 = __importDefault(require("cors"));
+const notescontent_1 = require("./DATABASE/notescontent");
 app.use((0, cors_1.default)());
 app.post("/api/v1/signup", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -101,6 +102,26 @@ app.get("/api/v1/brain/content", middleware_1.UserMiddelware, (req, res) => __aw
     res.json({
         content
     });
+}));
+app.post("/api/v1/brain/notes", middleware_1.UserMiddelware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const notes = req.body.notes;
+    //@ts-ignore
+    const userId = req.userId;
+    yield notescontent_1.NotesModel.create({
+        notes: notes,
+        userId: userId
+    });
+    res.json({
+        message: "notes added"
+    });
+}));
+app.get("/api/v1/brain/note", middleware_1.UserMiddelware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    //@ts-ignore
+    const userId = req.userId;
+    const response = yield notescontent_1.NotesModel.find({
+        userId: userId
+    }).populate("userId","username");
+    res.json({ response });
 }));
 app.post("/api/v1/brain/share", middleware_1.UserMiddelware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const share = req.body.share;
