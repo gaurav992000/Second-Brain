@@ -134,10 +134,10 @@ app.post("/api/v1/brain/notes",UserMiddelware,async(req,res)=>{
 app.get("/api/v1/brain/note",UserMiddelware,async(req,res)=>{
     //@ts-ignore
     const userId:req.userId
-    const response=await NotesModel.find({
+    const responsenote=await NotesModel.find({
         userId:userId
     }).populate("userId","username")
-    res.json({response})
+    res.json({responsenote})
 
 })
 

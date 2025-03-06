@@ -106,7 +106,7 @@ app.get("/api/v1/brain/content", middleware_1.UserMiddelware, (req, res) => __aw
 app.post("/api/v1/brain/notes", middleware_1.UserMiddelware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const notes = req.body.notes;
     //@ts-ignore
-    const userId = req.userId;
+    const userId=req.userId;
     yield notescontent_1.NotesModel.create({
         notes: notes,
         userId: userId
@@ -117,11 +117,11 @@ app.post("/api/v1/brain/notes", middleware_1.UserMiddelware, (req, res) => __awa
 }));
 app.get("/api/v1/brain/note", middleware_1.UserMiddelware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //@ts-ignore
-    const userId = req.userId;
-    const response = yield notescontent_1.NotesModel.find({
+    const userId=req.userId;
+    const responsenote = yield notescontent_1.NotesModel.find({
         userId: userId
-    }).populate("userId","username");
-    res.json({ response });
+    }).populate("userId", "username");
+    res.json({ responsenote });
 }));
 app.post("/api/v1/brain/share", middleware_1.UserMiddelware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const share = req.body.share;
