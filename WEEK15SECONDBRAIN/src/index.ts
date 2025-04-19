@@ -117,11 +117,12 @@ app.get("/api/v1/brain/content",UserMiddelware, async (req,res)=>{
 
 
 app.post("/api/v1/brain/notes",UserMiddelware,async(req,res)=>{
+    //@ts-ignore
     const notes=req.body.notes
-     //@ts-ignore
+    //@ts-ignore
     const userId:req.userId
     await NotesModel.create({
-        notes:notes,
+        notes:notes,   
         
         userId:userId
     })
